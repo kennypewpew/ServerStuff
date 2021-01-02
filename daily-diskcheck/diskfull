@@ -1,0 +1,16 @@
+#!/bin/bash
+
+USAGE=$(df  | grep mmcblk0p2 | awk '{print $5}' | sed 's/%//')
+THRESHOLD=85
+
+TO=sysadmin@example
+FROM=home-server@example
+
+if [ "$USAGE" -gt "$THRESHOLD" ] ; then
+  sendmail $TO << EOF
+subject:Disk Nearly Full (Raspberry)
+from:$FROM
+
+Root directory is $USAGE% full (exceeded threshold of $THRESHOLD%).
+EOF
+fi
