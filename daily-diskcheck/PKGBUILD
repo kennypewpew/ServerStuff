@@ -1,3 +1,5 @@
+# Maintainer: Kenny Peou (https://github.com/kennypewpew)
+
 pkgname=daily-diskcheck
 pkgver=20210102
 pkgrel=1
@@ -13,6 +15,12 @@ source=(
   "diskcheck@.service::https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/daily-diskcheck/diskcheck%40.service"
   "https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/daily-diskcheck/diskfull"
   )
+
+sha256sums=(
+  "10158bc9e250b411552a6e98dceeec23268f4ca595c1cacc30b0a1fc1587527d"
+  "739f0455152ab5c0f9b21a4645d977bb09ff1f496eda8073589dfd739e8d2f56"
+  "9227fd65b5d5690b95d2daf618a823e221e4faa9e3d1e3e3d93d78b8e9a7a644"
+)
 
 package() {
   install -Dm644 "${srcdir}"/diskcheck-daily.timer "${pkgdir}"/usr/lib/systemd/system/diskcheck-daily.timer
