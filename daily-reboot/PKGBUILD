@@ -1,0 +1,14 @@
+pkgname=daily-reboot-job
+pkgver=20210102
+pkgrel=1
+pkgdesc="Reboot daily at 2am"
+arch=('any')
+url='https://github.com/kennypewpew/ServerStuff'
+license=('MIT')
+depends=()
+provides=('daily-reboot-job')
+
+package() {
+  install -Dm644 "${srcdir}"/reboot-daily.timer "${pkgdir}"/usr/lib/systemd/system/reboot-daily.timer
+  install -Dm644 "${srcdir}"/reboot@.service "${pkgdir}"/usr/lib/systemd/system/reboot@.service
+}
