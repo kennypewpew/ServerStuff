@@ -27,6 +27,6 @@ sha256sums=(
 package() {
   install -Dm644 "${srcdir}"/rsnapshot-daily.timer "${pkgdir}"/usr/lib/systemd/system/rsnapshot-daily.timer
   install -Dm644 "${srcdir}"/rsnapshot-weekly.timer "${pkgdir}"/usr/lib/systemd/system/rsnapshot-weekly.timer
-  install -Dm644 "${srcdir}"/rsnapshot-montly.timer "${pkgdir}"/usr/lib/systemd/system/rsnapshot-montly.timer
+  install -Dm644 "${srcdir}"/rsnapshot-monthly.timer "${pkgdir}"/usr/lib/systemd/system/rsnapshot-monthly.timer
   install -Dm644 "${srcdir}"/rsnapshot@.service "${pkgdir}"/usr/lib/systemd/system/rsnapshot@.service
 }
