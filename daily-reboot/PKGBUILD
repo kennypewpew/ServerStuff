@@ -1,3 +1,5 @@
+# Maintainer: Kenny Peou (https://github.com/kennypewpew)
+
 pkgname=daily-reboot-job
 pkgver=20210102
 pkgrel=1
@@ -5,8 +7,18 @@ pkgdesc="Reboot daily at 2am"
 arch=('any')
 url='https://github.com/kennypewpew/ServerStuff'
 license=('MIT')
-depends=()
+depends=('systemd')
 provides=('daily-reboot-job')
+
+source=(
+  "https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/daily-reboot/reboot-daily.timer"
+  "reboot@.service::https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/daily-reboot/reboot%40.service"
+  )
+
+sha256sums=(
+  "f9a17372ef4d4962b8b1bdf27bc5250a2ccede45700071d868f47f597a665112"
+  "aedd4b8eb238a9ec01b3433cd00bd7ba0d25d5e0735859c540678ffd2eed0b6d"
+)
 
 package() {
   install -Dm644 "${srcdir}"/reboot-daily.timer "${pkgdir}"/usr/lib/systemd/system/reboot-daily.timer
