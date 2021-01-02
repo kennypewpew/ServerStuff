@@ -1,0 +1,11 @@
+[Unit]
+Description=reboot daily because there's a memory leak somewhere
+
+[Timer]
+# 2:00 is the clock time when to start it
+OnCalendar=2:00
+Persistent=true
+Unit=reboot@daily.service
+
+[Install]
+WantedBy=timers.target

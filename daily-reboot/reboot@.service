@@ -1,0 +1,8 @@
+[Unit]
+Description=reboot
+
+[Service]
+Type=oneshot
+Nice=19
+IOSchedulingClass=idle
+ExecStart=/usr/bin/reboot
