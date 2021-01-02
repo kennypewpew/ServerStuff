@@ -1,0 +1,21 @@
+pkgname=daily-diskcheck
+pkgver=20210102
+pkgrel=1
+pkgdesc="Check if disk usage is above a threshold and email"
+arch=('any')
+url='https://github.com/kennypewpew/ServerStuff'
+license=('MIT')
+depends=('bash')
+provides=('daily-diskcheck')
+
+source=(
+  "https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/daily-diskcheck/diskcheck-daily.timer"
+  "diskcheck@.service::https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/daily-diskcheck/diskcheck%40.service"
+  "https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/daily-diskcheck/diskfull"
+  )
+
+package() {
+  install -Dm644 "${srcdir}"/diskcheck-daily.timer "${pkgdir}"/usr/lib/systemd/system/diskcheck-daily.timer
+  install -Dm644 "${srcdir}"/diskcheck@.service "${pkgdir}"/usr/lib/systemd/system/diskcheck@.service
+  install -Dm755 "${srcdir}"/diskfull ${pkgdir}/usr/local/bin/diskfull
+}
