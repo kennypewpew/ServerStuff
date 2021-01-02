@@ -1,0 +1,32 @@
+# Maintainer: Kenny Peou (https://github.com/kennypewpew)
+
+pkgname=rsnapshot-backup-timers
+pkgver=20210102
+pkgrel=1
+pkgdesc="Regular rsnapshot backups"
+arch=('any')
+url='https://github.com/kennypewpew/ServerStuff'
+license=('MIT')
+depends=('systemd' 'rsnapshot')
+provides=('rsnapshot-backup-timers')
+
+source=(
+  "https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/rsnapshot/rsnapshot-daily.timer"
+  "https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/rsnapshot/rsnapshot-weekly.timer"
+  "https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/rsnapshot/rsnapshot-monthly.timer"
+  "rsnapshot@.service::https://raw.githubusercontent.com/kennypewpew/ServerStuff/master/rsnapshot/rsnapshot%40.service"
+  )
+
+sha256sums=(
+  "dbc765b8c360f8873bf86f1b0eee9241c392ac3342d8227fde05dcb0bf0bd03d"
+  "fa622f858d8323425a80fbf4f5055aa5bb65513a3ae9336fefb8bf448f9566dc"
+  "379f21378fe6a9235bef1be4885622c9282bbc75e57528b1f887cb40706c3698"
+  "cce49a0afc3133f8bda174516253eff572e0d0bd4ba095e5c514c2d2c76084e5"
+)
+
+package() {
+  install -Dm644 "${srcdir}"/rsnapshot-daily.timer "${pkgdir}"/usr/lib/systemd/system/rsnapshot-daily.timer
+  install -Dm644 "${srcdir}"/rsnapshot-weekly.timer "${pkgdir}"/usr/lib/systemd/system/rsnapshot-weekly.timer
+  install -Dm644 "${srcdir}"/rsnapshot-montly.timer "${pkgdir}"/usr/lib/systemd/system/rsnapshot-montly.timer
+  install -Dm644 "${srcdir}"/rsnapshot@.service "${pkgdir}"/usr/lib/systemd/system/rsnapshot@.service
+}
