@@ -1,0 +1,11 @@
+[Unit]
+Description=daily check if disk is getting full
+
+[Timer]
+# 8:00 is the clock time when to start it
+OnCalendar=8:00
+Persistent=true
+Unit=diskcheck@http.service
+
+[Install]
+WantedBy=timers.target
